@@ -9,3 +9,6 @@
   password: <%= @database['password'] %>
   encoding: <%= @database.has_key?('encoding') ? @database['encoding'] : 'utf8' %>
   reconnect: true
+  <% if @database.has_key?('pool') %>
+  pool: <%= @database['pool'] %>
+  <% end %>
