@@ -35,10 +35,11 @@ action :before_compile do
     "PATH" => [Gem.default_bindir, ENV['PATH']].join(':')
   })
 
-  new_resource.symlink_before_migrate.update({
-    "database.yml" => "config/database.yml"
-  })
-
+  unless new_resource.database.empty?
+    new_resource.symlink_before_migrate.update({
+      "database.yml" => "config/database.yml"
+    })
+  end
 end
 
 action :before_deploy do
@@ -47,7 +48,7 @@ action :before_deploy do
 
   install_gems
 
-  create_database_yml
+  create_database_yml unless new_resource.database.empty?
 
 end
 
