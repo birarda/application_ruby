@@ -105,7 +105,7 @@ action :before_migrate do
   end
 
   # create the log file that is 0666 corresponding to the rails environment
-  file "test.log" do
+  file "#{new_resource.environment_name}.log" do
     path "#{new_resource.release_path}/log"
     owner new_resource.owner
     mode "0666"
