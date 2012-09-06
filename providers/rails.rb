@@ -104,7 +104,7 @@ action :before_migrate do
     end
   end
 
-  # touch the log file corresponding to our chef environment
+  # create the log file that is 0666 corresponding to the rails environment
   file "#{new_resource.environment_name}.log" do
     path "#{new_resource.release_path}/log"
     owner new_resource.owner
