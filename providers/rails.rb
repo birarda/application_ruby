@@ -104,6 +104,12 @@ action :before_migrate do
     end
   end
 
+  # touch the log file corresponding to our chef environment
+  file "#{new_resource.environment_name}.log" do
+    path "#{new_resource.release_path}/log"
+    owner new_resource.owner
+    mode "0666"
+  end
 end
 
 action :before_symlink do
